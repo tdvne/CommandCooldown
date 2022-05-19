@@ -1,0 +1,6 @@
+name: CommandCooldown
+main: me.tdvne.commandcooldown.main
+description: A simple command cooldown plugin
+version: 1.0-SNAPSHOT
+authors:
+  - tdvne

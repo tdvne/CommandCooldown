@@ -1,0 +1,9 @@
+# Cooldowns are by seconds, (ex. 30 == 30 seconds)
+# Available placeholders: <time>
+
+Message: '&cYou''re on command cooldown, please wait <time> seconds.' #MMC Message ;)
+
+cooldowns:
+  msg: 5
+  queue: 5
+  tempban: 10
