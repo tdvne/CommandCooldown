@@ -1,2 +1,2 @@
 # CommandCooldown
-A simple command cooldown plugin.
+A simple spigot/bukkit plugin to add command cooldowns.
