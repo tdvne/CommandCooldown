@@ -1,6 +1,6 @@
 name: CommandCooldown
 main: me.tdvne.commandcooldown.main
-description: A simple command cooldown plugin
+description: A simple spigot/bukkit plugin to add command cooldowns.
 version: 1.0-SNAPSHOT
 authors:
   - tdvne
