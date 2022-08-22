@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 
 public class CC {
     public static final String prefix = "";
+
     public static String translate(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }

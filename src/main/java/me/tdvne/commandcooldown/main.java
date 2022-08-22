@@ -1,34 +1,36 @@
 package me.tdvne.commandcooldown;
 
 import me.tdvne.commandcooldown.util.CC;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin implements Listener {
+    private static Main instance;
     FileConfiguration config;
-    private static main instance;
+    Main plugin = this;
 
-    public static main getInstance() {
+    public static Main getInstance() {
         return instance;
     }
 
     public void onEnable() {
         instance = this;
+        Bukkit.getServer().getConsoleSender().sendMessage("§a[CommandCooldown] Registering Listeners...");
         this.config = getConfig();
         saveDefaultConfig();
-        getServer().getPluginManager().registerEvents(this, (Plugin) this);
-        System.out.println("[CommandCooldown] This plugin has enabled successfully");
+        getServer().getPluginManager().registerEvents(this, this);
+        Bukkit.getServer().getConsoleSender().sendMessage("§aCommandCooldown has successfully registered listeners & loaded.");
     }
 
     public void onDisable() {
         saveConfig();
-        System.out.println("[CommandCooldown] This plugin has disabled successfully");
+        Bukkit.getServer().getConsoleSender().sendMessage("§aCommandCooldown has successfully unloaded & disabled.");
     }
 
     @EventHandler
@@ -45,6 +47,7 @@ public class main extends JavaPlugin implements Listener {
         }
         this.config.set("players." + p.getUniqueId().toString() + "." + command, System.currentTimeMillis());
     }
+
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
         if (e.getMessage().trim().equalsIgnoreCase("/commandcooldown")) {
@@ -52,7 +55,7 @@ public class main extends JavaPlugin implements Listener {
             e.getPlayer().sendMessage(CC.translate("&4&lCommand Cooldown"));
             e.getPlayer().sendMessage(CC.translate(" &c&l┃ &fAuthor: &ctdvne"));
             e.getPlayer().sendMessage(CC.translate(" &c&l┃ &fDiscord: &ctdvne#0001"));
-            e.getPlayer().sendMessage(CC.translate(" &c&l┃ &fVersion: &cv1.0"));
+            e.getPlayer().sendMessage(CC.translate(" &c&l┃ &fVersion: &cv" + plugin.getDescription().getVersion()));
             e.getPlayer().sendMessage(CC.translate("&4&m--*----------------*--"));
             e.setCancelled(true);
         }
